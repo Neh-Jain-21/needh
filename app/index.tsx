@@ -1,9 +1,16 @@
 import { View, StyleSheet, Image, Text, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Link, useRouter } from 'expo-router';
 // COMPONENTS
 import Header from '@/components/Header/Header';
+// HELPERS
+import COLORS from '@/helpers/Colors';
+import { FONT_SIZE } from '@/helpers/Fonts';
+import { DIMENSION_Y, DIMENSION_X } from '@/helpers/Dimensions';
 
 export default function HomeScreen() {
+	const router = useRouter();
+
 	return (
 		<SafeAreaView style={styles.container}>
 			<Header />
@@ -17,7 +24,7 @@ export default function HomeScreen() {
 				<Text style={styles.titleTextBold}>a sense of belonging</Text>
 			</View>
 
-			<TouchableOpacity style={{ marginTop: 20 }}>
+			<TouchableOpacity style={{ marginTop: DIMENSION_X._20 }} onPress={() => router.navigate('/login')}>
 				<Image source={require('@/assets/images/ArrowRightImage.png')} />
 			</TouchableOpacity>
 
@@ -32,20 +39,20 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		position: 'relative',
-		paddingHorizontal: 20,
-		backgroundColor: '#F2ECE0',
+		paddingHorizontal: DIMENSION_Y._20,
+		backgroundColor: COLORS.PRIMARY,
 	},
 	title: {
 		display: 'flex',
 		flexDirection: 'row',
 		flexWrap: 'wrap',
-		marginTop: 20,
+		marginTop: DIMENSION_X._20,
 	},
 	titleText: {
-		fontSize: 24,
+		fontSize: FONT_SIZE._24,
 	},
 	titleTextBold: {
-		fontSize: 24,
+		fontSize: FONT_SIZE._24,
 		fontWeight: 'bold',
 	},
 	imgContainer: {

@@ -1,11 +1,14 @@
 import { Image, StyleSheet, Text, View } from 'react-native';
+// HELPERS
+import { FONT_SIZE } from '@/helpers/Fonts';
+import { DIMENSION_Y, DIMENSION_X } from '@/helpers/Dimensions';
 
 export default function Header() {
 	return (
 		<View style={styles.container}>
 			<Image source={require('../../assets/images/Logo.png')} style={styles.logo} />
 
-			<View style={{ marginLeft: 10 }}>
+			<View style={{ marginLeft: DIMENSION_Y._10 }}>
 				<Text style={styles.logoTitle}>Needh</Text>
 				<Text style={styles.logoBody}>Design Studio</Text>
 			</View>
@@ -20,28 +23,28 @@ const styles = StyleSheet.create({
 		display: 'flex',
 		flexDirection: 'row',
 		alignItems: 'center',
-		marginBottom: 20,
+		marginBottom: DIMENSION_Y._20,
 	},
 	logo: {
-		width: 32,
-		height: 32,
+		width: DIMENSION_Y._32,
+		height: DIMENSION_X._32,
 	},
 	logoTitle: {
-		fontSize: 26,
+		fontSize: FONT_SIZE._26,
 		fontWeight: '400',
 		color: '#111',
-		lineHeight: 26,
+		lineHeight: FONT_SIZE._26,
 	},
 	logoBody: {
-		fontSize: 14,
+		fontSize: FONT_SIZE._14,
 		fontWeight: '400',
 		color: '#111',
-		lineHeight: 14,
+		lineHeight: FONT_SIZE._14,
 	},
 	line: {
 		flex: 1,
 		height: 1,
 		backgroundColor: '#111',
-		marginLeft: 20,
+		marginLeft: DIMENSION_Y._20,
 	},
 });
