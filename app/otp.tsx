@@ -45,7 +45,7 @@ export default function OtpScreen() {
 				<Text style={styles.backToLoginText}>Back to Login</Text>
 			</TouchableOpacity>
 
-			<TouchableOpacity style={styles.getInTouchContainer}>
+			<TouchableOpacity style={styles.getInTouchContainer} onPress={() => router.navigate('/getInTouch')}>
 				<Text style={styles.getInTouchText}>Get in Touch</Text>
 			</TouchableOpacity>
 		</SafeAreaView>

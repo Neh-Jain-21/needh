@@ -29,7 +29,7 @@ export default function HomeScreen() {
 			</TouchableOpacity>
 
 			<View style={styles.imgContainer}>
-				<Image source={require('@/assets/images/HeroImage.png')} />
+				<Image style={{ zIndex: -1 }} source={require('@/assets/images/HeroImage.png')} />
 			</View>
 		</SafeAreaView>
 	);

@@ -35,7 +35,7 @@ export default function LoginScreen() {
 				</TouchableOpacity>
 			</View>
 
-			<TouchableOpacity style={styles.getInTouchContainer}>
+			<TouchableOpacity style={styles.getInTouchContainer} onPress={() => router.navigate('/getInTouch')}>
 				<Text style={styles.getInTouchText}>Get in Touch</Text>
 			</TouchableOpacity>
 		</SafeAreaView>

@@ -31,6 +31,7 @@ export default function RootLayout() {
 				<Stack.Screen name="index" options={{ headerShown: false }} />
 				<Stack.Screen name="login" options={{ headerShown: false }} />
 				<Stack.Screen name="otp" options={{ headerShown: false }} />
+				<Stack.Screen name="getInTouch" options={{ headerShown: false }} />
 				<Stack.Screen name="+not-found" />
 			</Stack>
 			<StatusBar style="auto" />
