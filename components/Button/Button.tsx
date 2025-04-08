@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { StyleProp, StyleSheet, Text, TouchableOpacity, ViewStyle } from 'react-native';
 // HELPERS
 import COLORS from '@/helpers/Colors';
 import { FONT_SIZE } from '@/helpers/Fonts';
@@ -11,8 +11,12 @@ type ButtonProps = {
 };
 
 export default function Button(props: ButtonProps) {
+	const btnStyles: StyleProp<ViewStyle> = [styles.btn];
+
+	if (props.disabled) btnStyles.push(styles.disabledBtn);
+
 	return (
-		<TouchableOpacity style={{ ...styles.btn, ...(props.disabled ? styles.disabledBtn : undefined) }} onPress={props.onPress}>
+		<TouchableOpacity style={btnStyles} disabled={props.disabled} onPress={props.onPress}>
 			<Text style={styles.btnText}>{props.title}</Text>
 		</TouchableOpacity>
 	);
@@ -26,7 +30,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		marginTop: DIMENSION_X._50,
 		height: DIMENSION_Y._56,
-		backgroundColor: COLORS.DARK_SECONDARY,
+		backgroundColor: COLORS.DARK_PRIMARY,
 		paddingVertical: DIMENSION_Y._10,
 		paddingHorizontal: DIMENSION_Y._20,
 		borderRadius: BORDER_RADIUS._10,
