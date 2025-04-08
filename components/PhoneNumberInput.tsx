@@ -1,49 +1,42 @@
-import { useMemo } from 'react';
-import { Text, View } from 'react-native';
-import { InputManager } from 'rn-phone-number-input';
+import { useState } from 'react';
 // HELPERS
-import { DIMENSION_X } from '@/helpers/Dimensions';
+import { BORDER_RADIUS, DIMENSION_X, DIMENSION_Y } from '@/helpers/Dimensions';
+import PhoneInput, { ICountry } from 'react-native-international-phone-number';
+import COLORS from '@/helpers/Colors';
 
-const PhoneNumberInput = (manager: InputManager) => {
-	const { state, dispatch, isValid, getNumberInfo } = manager;
+const PhoneNumberInput = () => {
+	const [selectedCountry, setSelectedCountry] = useState<null | ICountry>(null);
+	const [inputValue, setInputValue] = useState<string>('');
 
-	// open modal
-	dispatch({ type: 'setHidden', payload: false });
-
-	// close modal
-	dispatch({ type: 'setHidden', payload: true });
-
-	// change country – requires both ISO code and tel to avoid ambiguity
-	dispatch({ type: 'updateCountry', payload: { tel: '+1', code: 'US' } });
-
-	// process user input, parses number & updates number / formatted text
-	// copy-pasted / auto-completed number are handled automatically
-	dispatch({ type: 'processInput', payload: '7071001000' });
-
-	// advanced phone number logic through libphonenumber-js
-	const phoneNumber = getNumberInfo();
-
-	if (phoneNumber) {
-		console.log(phoneNumber.getType()); // e.g., "MOBILE"
-		console.log(phoneNumber.getURI()); // e.g., "tel:+12345678900"
+	function handleInputValue(phoneNumber: string) {
+		setInputValue(phoneNumber);
 	}
 
-	// provide (visual) feedback for valid numbers
-	const valid = useMemo(() => isValid(), [state.number]);
+	function handleSelectedCountry(country: ICountry) {
+		setSelectedCountry(country);
+	}
 
 	return (
-		<View style={{ marginLeft: 0, marginRight: 0, marginTop: DIMENSION_X._20, gap: DIMENSION_X._20 }}>
-			{/* e.164-formatted phone number, e.g. '+12345678900' */}
-			<Text>{state.number}</Text>
-			{/* country calling code, e.g. '+1' */}
-			<Text>{state.countryTel}</Text>
-			{/* ISO-3166 country code, e.g. 'US' */}
-			<Text>{state.countryCode}</Text>
-			{/* phone number in user-friendly formatting, e.g. '(234) 567-8900' */}
-			<Text>{state.formattedText}</Text>
-			{/* direct text input by user, e.g. '2345678900' */}
-			<Text>{state.inputText}</Text>
-		</View>
+		<PhoneInput
+			value={inputValue}
+			placeholder="Mobile Number"
+			phoneInputStyles={{
+				divider: { display: 'none' },
+				container: { borderWidth: 0, backgroundColor: 'transparent', marginTop: DIMENSION_X._20, gap: DIMENSION_X._10 },
+				flagContainer: { backgroundColor: COLORS.LIGHT, borderRadius: BORDER_RADIUS._10 },
+				callingCode: { marginLeft: DIMENSION_X._10, color: COLORS.TEXT_SECONDARY },
+				caret: { marginLeft: DIMENSION_X._10 },
+				input: {
+					height: DIMENSION_Y._53,
+					color: COLORS.TEXT_SECONDARY,
+					backgroundColor: COLORS.LIGHT,
+					borderRadius: BORDER_RADIUS._10,
+				},
+			}}
+			selectedCountry={selectedCountry}
+			onChangePhoneNumber={handleInputValue}
+			onChangeSelectedCountry={handleSelectedCountry}
+		/>
 	);
 };
 
