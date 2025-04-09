@@ -24,7 +24,7 @@ export default function HomeScreen() {
 				<Text style={styles.titleTextBold}>a sense of belonging</Text>
 			</View>
 
-			<TouchableOpacity style={{ marginTop: DIMENSION_X._20 }} onPress={() => router.navigate('/login')}>
+			<TouchableOpacity style={{ marginTop: DIMENSION_X._20 }} onPress={() => router.navigate('/clientLogin')}>
 				<Image source={require('@/assets/images/ArrowRightImage.png')} />
 			</TouchableOpacity>
 

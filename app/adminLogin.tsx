@@ -2,35 +2,35 @@ import { useRouter } from 'expo-router';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 // COMPONENTS
+import Input from '@/components/Input/Input';
 import Header from '@/components/Header/Header';
 import Button from '@/components/Button/Button';
-import PhoneNumberInput from '@/components/PhoneNumberInput';
 // HELPERS
 import COLORS from '@/helpers/Colors';
 import { FONT_SIZE } from '@/helpers/Fonts';
 import { BORDER_RADIUS, DIMENSION_Y, DIMENSION_X } from '@/helpers/Dimensions';
 
-export default function LoginScreen() {
+export default function AdminLoginScreen() {
 	const router = useRouter();
 
 	return (
 		<SafeAreaView style={styles.container}>
 			<Header />
 
-			<Text style={styles.titleText}>Client Login</Text>
+			<Text style={styles.titleText}>Login to your account</Text>
 
 			<Text style={styles.captionText}>Welcome back!! Please enter your details.</Text>
 
-			<Text style={styles.phoneNumberText}>Phone Number</Text>
+			<Input title="Username" containerStyles={{ marginTop: DIMENSION_Y._50 }} />
 
-			<PhoneNumberInput />
+			<Input title="Password" inputType="password" containerStyles={{ marginTop: DIMENSION_Y._20 }} />
 
-			<Button title="Login" onPress={() => router.navigate('/otp')} />
+			<Button title="Login" containerStyles={{ marginTop: DIMENSION_Y._40 }} onPress={() => router.navigate('/otp')} />
 
 			<View style={styles.adminTextContainer}>
-				<Text style={styles.adminText}>Are you an Admin? </Text>
+				<Text style={styles.adminText}>Are you a Client? </Text>
 
-				<TouchableOpacity>
+				<TouchableOpacity onPress={() => router.back()}>
 					<Text style={{ ...styles.adminText, fontWeight: '700' }}>Log In</Text>
 				</TouchableOpacity>
 			</View>
@@ -60,31 +60,6 @@ const styles = StyleSheet.create({
 		fontSize: FONT_SIZE._16,
 		fontWeight: 400,
 		color: COLORS.TEXT_SECONDARY,
-	},
-	phoneNumberText: {
-		marginTop: DIMENSION_X._30,
-		fontSize: FONT_SIZE._16,
-		fontWeight: 500,
-		color: COLORS.TEXT_PRIMARY,
-	},
-	loginBtn: {
-		display: 'flex',
-		flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'center',
-		marginTop: DIMENSION_X._50,
-		height: DIMENSION_Y._56,
-		backgroundColor: COLORS.DARK_PRIMARY,
-		paddingVertical: DIMENSION_Y._10,
-		paddingHorizontal: DIMENSION_Y._20,
-		borderRadius: BORDER_RADIUS._10,
-		borderWidth: 1,
-		borderColor: '#fff',
-	},
-	loginBtnText: {
-		color: COLORS.LIGHT,
-		fontSize: FONT_SIZE._16,
-		fontWeight: 700,
 	},
 	adminTextContainer: {
 		marginTop: DIMENSION_X._30,

@@ -8,10 +8,11 @@ type ButtonProps = {
 	title: string;
 	disabled?: boolean;
 	onPress?: () => void;
+	containerStyles?: StyleProp<ViewStyle>;
 };
 
 export default function Button(props: ButtonProps) {
-	const btnStyles: StyleProp<ViewStyle> = [styles.btn];
+	const btnStyles: StyleProp<ViewStyle> = [styles.btn, props.containerStyles];
 
 	if (props.disabled) btnStyles.push(styles.disabledBtn);
 
